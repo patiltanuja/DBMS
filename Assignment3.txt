@@ -1,0 +1,74 @@
+create database Assignment3;
+use Assignment3;
+
+create table department1(
+deptId int(4) primary key ,
+deptName varchar(20)
+);
+
+select * from employee;
+select * from department1;
+insert into department1 values(1,'finance');
+insert into department1 values(2,'training');
+insert into department1 values(3,'Marketing');
+create table employee(
+empId int(4),
+empName varchar(10),
+dept_id int(6),
+salary int(7),
+manager varchar(8),
+constraint fk_deptId foreign key (dept_Id) references department(deptId));
+
+insert into employee values(1,'arun',1,8000,4);
+insert into employee values(2,'kiran',1,7000,1);
+insert into employee values(3,'scott',1,3000,4);
+insert into employee values(4,'max',2,9000,null);
+insert into employee values(5,'jack',2,8000,4);
+insert into employee values(6,'king',null,6000,1);
+
+CREATE TABLE PUBLISHERS1
+(
+    PUBID      INT(3)   PRIMARY KEY,
+    PNAME      VARCHAR(30),
+    EMAIL      VARCHAR(50)  UNIQUE,
+    PHONE      VARCHAR(30)
+);
+
+INSERT INTO PUBLISHERS1 VALUES (1,'WILLEY','WDT@VSNL.NET','91-11-23260877');
+INSERT INTO PUBLISHERS1 VALUES (2,'WROX','INFO@WROX.COM',NULL);
+INSERT INTO PUBLISHERS1 VALUES (3,'TATA MCGRAW-HILL','FEEDBACK@TATAMCGRAWHILL.COM','91-11-33333322');
+INSERT INTO PUBLISHERS1 VALUES (4,'TECHMEDIA','BOOKS@TECHMEDIA.COM','91-11-33257660');
+
+
+
+
+
+
+
+CREATE TABLE  AUTHORS1
+(
+    AUID       INT(5)  PRIMARY KEY,
+    ANAME      VARCHAR(30),
+    EMAIL      VARCHAR(50)  UNIQUE,
+    PHONE      VARCHAR(30)
+);
+
+INSERT INTO AUTHORS1 VALUES (101, 'HERBERT SCHILD','HERBERT@YAHOO.COM',NULL);
+INSERT INTO AUTHORS1 VALUES (102, 'JAMES GOODWILL','GOODWILL@HOTMAIL.COM',NULL);
+INSERT INTO AUTHORS1 VALUES (103, 'DAVAID HUNTER','HUNTER@HOTMAIL.COM',NULL);
+INSERT INTO AUTHORS1 VALUES (104, 'STEPHEN WALTHER','WALTHER@GMAIL.COM',NULL);
+INSERT INTO AUTHORS1 VALUES (105, 'KEVIN LONEY','LONEY@ORACLE.COM',NULL);
+INSERT INTO AUTHORS1 VALUES (106, 'ED. ROMANS','ROMANS@THESERVERSIDE.COM',NULL);
+
+/*order by*/
+select * from authors order by aname;
+select * from publishers order by pname;
+
+/*group by*/
+select  sum(salary) from  employee group by  dept_id;
+select dept_id,sum(salary) from employee group by  dept_id having  sum(salary)>17000;
+
+/*having*/
+select sum(salary) from employee group by  dept_id having  sum(salary)>18000;
+select sum(salary) from employee group by  dept_id having  sum(salary)<20000;
+
