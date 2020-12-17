@@ -1,0 +1,44 @@
+CREATE DATABASE ASSGN10;
+USE ASSGN10;
+create table employee(
+empId int(4),
+empName varchar(10),
+dept_id int(6),
+salary int(7),
+manager varchar(8)
+);
+
+
+insert into employee values(1,'arun',1,8000,4);
+insert into employee values(2,'kiran',1,7000,1);
+insert into employee values(3,'scott',1,3000,4);
+insert into employee values(4,'max',2,9000,null);
+insert into employee values(5,'jack',2,8000,4);
+insert into employee values(6,'king',null,6000,1);
+
+select * from employee;
+SELECT EMPNAME FROM EMPLOYEE WHERE EMPNAME REGEXP '^SC';
+SELECT EMPNAME FROM EMPLOYEE WHERE EMPNAME REGEXP 'NG$';
+SELECT EMPNAME FROM EMPLOYEE WHERE EMPNAME REGEXP 'io|ea';
+SELECT EMPNAME FROM EMPLOYEE WHERE EMPNAME REGEXP'[sd]';
+
+
+CREATE TABLE TUTORIAL(
+ID INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+TITLE VARCHAR(200),
+DESCRIPTION TEXT,
+FULLTEXT(TITLE,DESCRIPTION));
+
+INSERT INTO TUTORIAL(TITLE,DESCRIPTION) VALUES
+('SQL Joins','An SQL JOIN clause combines rows from two or more tables. It creates a set of rows in a temporary table.'),
+('SQL Equi Join','SQL EQUI JOIN performs a JOIN against equality or matching column(s) values of the associated tables. An equal sign (=) is used as comparison operator in the where clause to refer equality.'),
+('SQL Left Join','The SQL LEFT JOIN, joins two tables and fetches rows based on a condition, which is matching in both the tables and the unmatched rows will also be available from the table before the JOIN clause.'),
+('SQL Cross Join','The SQL CROSS JOIN produces a result set which is the number of rows in the first table multiplied by the number of rows in the second table, if no WHERE clause is used along with CROSS JOIN.'),
+('SQL Full Outer Join','In SQL the FULL OUTER JOIN combines the results of both left and right outer joins and returns all (matched or unmatched) rows from the tables on both sides of the join clause.'),
+('SQL Self Join','A self join is a join in which a table is joined with itself (which is also called Unary relationships), especially when the table has a FOREIGN KEY which references its own PRIMARY KEY.');
+
+SELECT * FROM TUTORIAL WHERE MATCH(TITLE,DESCRIPTION) AGAINST('LEFT RIGHT' IN NATURAL LANGUAGE MODE);
+
+SELECT COUNT(*) FROM TUTORIAL WHERE MATCH(TITLE,DESCRIPTION) AGAINST('LEFT RIGHT' IN NATURAL LANGUAGE MODE);
+
+SELECT * FROM TUTORIAL WHERE MATCH(TITLE,DESCRIPTION) AGAINST('+JOINS -RIGHT' IN BOOLEAN  MODE);
